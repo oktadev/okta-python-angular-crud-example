@@ -1,0 +1,45 @@
+<mat-toolbar color="primary">
+  <input matInput (keyup)="onSearch($event)" placeholder="Search for your OOS project on Github + Press Enter">
+  <button mat-button (click)="logout($event)">LOGOUT</button>
+</mat-toolbar>
+
+<mat-tab-group mat-align-tabs="center" [selectedIndex]="selectedTab" dynamicHeight>
+  <mat-tab label="KUDO">
+    <mat-grid-list cols="4">
+      <mat-grid-tile *ngFor="let repo of kudos" rowHeight='200px'>
+        <mat-card class="card">
+          <mat-card-header class="title">
+            <mat-card-title>{{repo.full_name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            {{repo.description}}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button [color]="isKudo(repo) ? 'accent' : 'primary'" (click)="onKudo($event, repo)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+  <mat-tab label="SEARCH">
+    <mat-grid-list cols="4">
+      <mat-grid-tile *ngFor="let repo of repos" rowHeight='200px'>
+        <mat-card class="card">
+          <mat-card-header class="title">
+            <mat-card-title>{{repo.full_name}}</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            {{repo.description}}
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-icon-button [color]="isKudo(repo) ? 'accent' : 'primary'" (click)="onKudo($event, repo)">
+              <mat-icon>favorite</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-tab>
+</mat-tab-group>
